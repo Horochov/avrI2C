@@ -15,7 +15,7 @@
  * Returns error value (ok=0)
  *
  */
-err_t i2c_init(uint16_t bitrateX100K) {
+err_t i2c_init(uint16_t bitrate_x1K) {
 	/*
 	 * TODO: Maybe tinker with prescaler even if TWBR < 255
 	 * Check if i2c isn't live
@@ -24,7 +24,7 @@ err_t i2c_init(uint16_t bitrateX100K) {
 	 * ((F_CPU / SCL_FREQ)/2 - 8 ) /  PRESC = TWBR
 	 * (F_CPU / SCL_FREQ)/2 < 8 means underflow. For value 8 TWBR is still 0.
 	 */
-	int16_t bitrate = F_CPU / 2000 / bitrateX100K;
+	int16_t bitrate = F_CPU / 2000 / bitrate_x1K;
 	TWSR &= ~((1<<TWPS0)|(1<<TWPS1));	//disable prescaler
 	if (bitrate < 9) {			//handle underflow
 		TWBR = 0;

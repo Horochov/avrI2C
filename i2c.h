@@ -17,7 +17,7 @@
 #endif
 
 
-err_t i2c_init(uint16_t bitrateX100K);
+err_t i2c_init(uint16_t bitrate_x1K);
 err_t i2c_start(uint8_t devAddr);
 void i2c_stop(void);
 err_t i2c_write(uint8_t bajt);
